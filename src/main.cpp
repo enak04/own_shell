@@ -7,10 +7,19 @@ int main()
     std::cout << std::unitbuf;
     std::cerr << std::unitbuf;
 
-    std::cout << "$ ";
+    // Uncomment this block to pass the first stage
 
-    std::string input;
-    std::getline(std::cin, input);
-    std::cout << input << ": command not found" << std::endl;
-    main();
+    while (true)
+    {
+        std::string input;
+        std::cout << "$ ";
+        std::getline(std::cin, input);
+        if (input == "exit 0")
+            return 0;
+        else if (input.find("echo") != std::string::npos)
+            std::cout << input.substr(5) << "\n";
+        else
+            std::cout << input << ": command not found\n";
+    }
+    return 0;
 }
